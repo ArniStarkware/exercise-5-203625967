@@ -1,7 +1,10 @@
+import pathlib
 import subprocess
 import sys
 
 import pytest
+
+root = pathlib.Path(__file__).absolute().parent.parent
 
 
 @pytest.fixture(autouse=True)
@@ -17,6 +20,6 @@ def test_import(capsys):
 
 
 def test_execute():
-    result = subprocess.run(['python', '../e1.py'], capture_output=True)
+    result = subprocess.run(['python', str(root / 'e1.py')], capture_output=True)
     assert result.stdout == b"I'm a script!\n"
     assert result.stderr == b''
