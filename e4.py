@@ -1,2 +1,9 @@
+import contextlib
+import sys
+import os
+@contextlib.contextmanager
 def in_directory(path):
-    pass # TODO
+    original = os.getcwd()
+    os.chdir(path)
+    yield 
+    os.chdir(original)
