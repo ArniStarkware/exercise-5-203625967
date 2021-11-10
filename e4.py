@@ -3,7 +3,7 @@ import sys
 import os
 @contextlib.contextmanager
 def in_directory(path):
-    original = os.getcwd()
-    os.chdir(path)
+    original = sys.path
+    sys.path = [path]
     yield 
-    os.chdir(original)
+    sys.path = original
